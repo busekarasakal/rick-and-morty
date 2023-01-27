@@ -1,30 +1,28 @@
-function NavbarItem(props: {
-  text: string;
-  icon?: React.ReactNode;
-  isSelected?: boolean;
-}) {
+import { LayoutTypes, NavbarTypes } from '../../types/layout.types';
+
+function NavbarItem({isSelected, text, icon}: NavbarTypes) {
   return (
     <li className="hover:cursor-pointer">
       <a
         href="#"
         className={`flex flex-col lg:flex-row items-center h-12 transform ${
-          props.isSelected ? 'text-base' : 'text-gray-500'
+          isSelected ? 'text-base' : 'text-gray-500'
         } hover:text-base hover:text-lime-600 hover:font-bold`}
       >
         <span
           className={`inline-flex items-center justify-center h-12 w-12 text-lg text-2xl ${
-            props.isSelected ? 'text-base' : 'text-gray-500'
+            isSelected ? 'text-base' : 'text-gray-500'
           }`}
         >
-          {props.icon}
+          {icon}
         </span>
-        <span className="text-sm uppercase font-semibold">{props.text}</span>
+        <span className="text-sm uppercase font-semibold">{text}</span>
       </a>
     </li>
   );
 }
 
-export function Layout(props: { children: React.ReactNode }) {
+export function Layout( { children }: LayoutTypes) {
   return (
     <div className="min-h-screen lg:min-w-screen flex flex-row lg:flex-col bg-stone-300">
       <div className="lg:fixed lg:top-0 lg:z-50 flex flex-col lg:flex-row w-32 lg:h-32 lg:w-full bg-stone-300 overflow-hidden border-r-[1px] border-solid border-gray-200">
@@ -43,7 +41,7 @@ export function Layout(props: { children: React.ReactNode }) {
         </ul>
       </div>
       <div className="min-h-screen lg:min-w-screen w-full lg:h-full flex flex-col lg:flex-row items-center lg:pt-32">
-        {props.children}
+        {children}
       </div>
     </div>
 
