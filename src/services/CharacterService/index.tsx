@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { CharacterType } from "../../types/character.types";
+import { CharacterType } from "../../types/character.type";
 
 export const CharacterService = {
-    getCharacterList() {
+    useGetCharacterList() {
         const [characterList, setCharacterList] = useState<CharacterType[]>([]);
         const [isLoading, setIsLoading] = useState<boolean>(false);
         const [error, setError] = useState<string | null>(null);
@@ -23,26 +23,4 @@ export const CharacterService = {
 
         return { characterList, isLoading, error };
     },
-
-    getCharacter(id: string) {
-        const [character, setCharacter] = useState<CharacterType>();
-        const [isLoading, setIsLoading] = useState<boolean>(false);
-        const [error, setError] = useState<string | null>(null);
-
-        useEffect(() => {
-            setIsLoading(true);
-            fetch(`https://rickandmortyapi.com/api/character/${id}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    setCharacter(data);
-                    setIsLoading(false);
-                })
-                .catch((error) => {
-                    setError(error);
-                    setIsLoading(false);
-                });
-        }, []);
-        
-        return { character, isLoading, error };
-    }
 }
