@@ -26,12 +26,12 @@ export function Layout({ children }: LayoutTypes) {
   return (
     <div className='flex flex-row lg:flex-col bg-zinc-800'>
       <div
-        className='lg:fixed lg:top-0 lg:z-50 flex flex-col lg:flex-row w-32 lg:h-32 lg:w-full bg-stone-300 overflow-hidden border-r-[1px] border-solid border-gray-200'>
-        <div className='flex items-center justify-center h-28 lg:w-64 mb-4 bg-base'>
-          <h1 className='fixed text-3xl text-white font-serif'>Rick and Morty</h1>
+        className='flex flex-col lg:flex-row w-32 lg:h-32 lg:w-full lg:fixed lg:top-0 lg:z-50 bg-stone-300 overflow-hidden border-r-[1px] border-solid border-gray-200'>
+        <div className='flex justify-center items-center h-28 lg:w-64 mb-4 bg-base'>
+          <h1 className='fixed font-serif text-3xl text-white'>Rick and Morty</h1>
         </div>
         <ul
-          className='fixed top-0 z-50 flex flex-col lg:flex-row py-32 lg:py-9 lg:px-4 lg:justify-end lg:items-center lg:w-full gap-6'>
+          className='flex flex-col lg:flex-row lg:justify-end lg:items-center lg:w-full fixed top-0 z-50 py-32 lg:py-9 lg:px-4 gap-6'>
           <NavbarItem text={'Matches'} />
           <NavbarItem
             text={'Images'}
