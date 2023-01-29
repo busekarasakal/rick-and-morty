@@ -1,6 +1,7 @@
 import { STATUS } from '../../types/status.enum';
+import { StatusType } from '../../types/status.type';
 
-export function StatusBadge({ status, type }) {
+export function StatusBadge({ status, type }: StatusType) {
   const statusColor = (status) => {
     return status === STATUS.Alive ? 'bg-lime-500' : status === STATUS.Dead ? 'bg-black' : 'bg-slate-200';
   };
