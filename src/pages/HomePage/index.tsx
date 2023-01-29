@@ -17,7 +17,7 @@ export function HomePage() {
       </div>
       <div className='flex justify-center items-end w-auto lg:w-full h-36 pt-24'>
         <ReactPaginate
-          className='flex lg:gap-20 gap-8 h-full text-center items-center lg:mb-6 cursor-point shadow-lg shadow-zinc-700/50 text-white'
+          className='flex lg:gap-20 gap-8 h-full text-center items-center lg:mb-6 cursor-point text-white'
           activeClassName='lg:text-xl font-bold text-lime-500'
           breakLabel='...'
           nextLabel=' >'
