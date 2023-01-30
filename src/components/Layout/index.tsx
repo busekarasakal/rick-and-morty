@@ -1,6 +1,6 @@
 import { LayoutType, NavbarTypes } from '../../types/layout.type';
 
-function NavbarItem({ isSelected, text, icon }: NavbarTypes) {
+function NavbarItem({ isSelected, text }: NavbarTypes) {
   return (
     <li className='hover:cursor-pointer'>
       <a

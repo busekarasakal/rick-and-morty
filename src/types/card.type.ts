@@ -3,5 +3,5 @@ export interface CardType {
   description: string;
   image: string;
   status: string;
-  type: string;
+  type?: string;
 }

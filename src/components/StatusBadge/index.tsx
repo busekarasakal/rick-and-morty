@@ -9,7 +9,8 @@ export function StatusBadge({ status, type }: StatusType) {
   return (
     <div className='items-center pt-3 pb-3'>
       <div className={`inline-flex w-2 h-2 mr-1.5 rounded-full ${statusColor(status as string)}`}></div>
-      <span className='text-white'>{status?.toUpperCase()} - {type}</span>
+      <span className='text-white'>{status?.toUpperCase()}</span>
+      {type && <span className='text-white'>-{type}</span>}
     </div>
   );
 }
