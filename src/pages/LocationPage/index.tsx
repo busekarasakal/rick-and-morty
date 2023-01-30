@@ -17,7 +17,7 @@ export function LocationPage() {
     variables: {
       page: page,
     },
-    onCompleted: data => setTotalPage(data.locations?.info?.pages | 0),
+    onCompleted: data => setTotalPage(data.locations?.info?.pages! | 0),
   });
 
   const handlePage = (data: { selected: number }) => {

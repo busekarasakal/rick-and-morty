@@ -16,7 +16,7 @@ export function EpisodePage() {
     variables: {
       page: page,
     },
-    onCompleted: data => setTotalPage(data.episodes?.info?.pages | 0),
+    onCompleted: data => setTotalPage(data.episodes?.info?.pages! | 0),
   });
 
   const handlePage = (data: { selected: number }) => {

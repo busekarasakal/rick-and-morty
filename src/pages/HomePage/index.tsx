@@ -17,7 +17,7 @@ export function HomePage() {
     variables: {
       page: page,
     },
-    onCompleted: data => setTotalPage(data.characters?.info?.pages | 0),
+    onCompleted: data => setTotalPage(data.characters?.info?.pages! | 0),
   });
 
   const handlePage = (data: { selected: number }) => {
