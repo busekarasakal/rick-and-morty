@@ -11,7 +11,7 @@ import { Pagination } from '../../components/Pagination';
 export function LocationPage() {
   const [page, setPage] = useState<number>(0);
 
-  const { data: locationData } = useQueryGetLocations({
+  const { data: locationData, loading: locationDataLoading } = useQueryGetLocations({
     variables: {
       page: page + 1,
     },
@@ -21,9 +21,11 @@ export function LocationPage() {
     setPage(data.selected);
   };
 
-  return locationData ? (
+  return !locationDataLoading || locationData ? (
     <>
       <Header title='Locations' />
+      <Pagination onPageChange={handlePage}
+                  pageCount={locationData?.locations?.info?.pages! | 1} currentPage={page} />
       <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
         {locationData?.locations?.results?.map((location) => (
           <CardList key={`card-${location?.id}`}

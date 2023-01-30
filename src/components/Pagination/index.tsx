@@ -1,8 +1,11 @@
 import ReactPaginate from 'react-paginate';
 import { PaginationType } from '../../types/pagination.type';
+import { useMediaQuery } from '../../hooks/udeMediaQuery';
 
-export function Pagination({onPageChange, pageCount, marginPagesDisplayed = 0, currentPage}: PaginationType) {
-  return(
+export function Pagination({ onPageChange, pageCount, marginPagesDisplayed = 0, currentPage }: PaginationType) {
+  const isMobile = useMediaQuery('(max-width: 760px)');
+
+  return (
     <div className='flex justify-center items-end w-auto lg:w-full h-36 pt-24'>
       <ReactPaginate
         className='flex lg:gap-20 gap-8 h-full text-center items-center lg:mb-6 cursor-point text-white'
@@ -12,10 +15,10 @@ export function Pagination({onPageChange, pageCount, marginPagesDisplayed = 0, c
         onPageChange={onPageChange}
         pageRangeDisplayed={2}
         pageCount={pageCount}
-        marginPagesDisplayed={marginPagesDisplayed}
+        marginPagesDisplayed={isMobile ? marginPagesDisplayed : 4}
         previousLabel='< '
         forcePage={currentPage}
       />
     </div>
-  )
+  );
 }

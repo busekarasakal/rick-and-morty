@@ -14,7 +14,7 @@ export function Card({ image = DEFAULT_IMAGE, title, description, status, type }
         <h1 className='flex-auto text-lg font-bold text-white'>
           {title}
         </h1>
-        <StatusBadge status={status} type={type} />
+        <StatusBadge status={status} type={type as string} />
         <div className='flex text-white'>
           {description}
         </div>

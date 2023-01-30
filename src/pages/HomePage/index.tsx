@@ -9,19 +9,21 @@ import { Pagination } from '../../components/Pagination';
 export function HomePage() {
   const [page, setPage] = useState<number>(0);
 
-  const { data: characterData } = useQueryGetCharacters({
+  const { data: characterData, loading: characterDataLoading } = useQueryGetCharacters({
     variables: {
       page: page + 1,
     },
   });
 
-  const handlePage = (data: {selected: number}) => {
+  const handlePage = (data: { selected: number }) => {
     setPage(data.selected);
   };
 
-  return characterData ? (
+  return !characterDataLoading || characterData ? (
     <>
       <Header title='Characters' />
+      <Pagination onPageChange={handlePage}
+                  pageCount={characterData?.characters?.info?.pages! | 1} currentPage={page} />
       <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
         {characterData?.characters?.results?.map((character) => (
           <CardList key={`card-${character?.id}`}

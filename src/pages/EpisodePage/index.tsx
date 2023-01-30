@@ -10,19 +10,21 @@ import { Pagination } from '../../components/Pagination';
 export function EpisodePage() {
   const [page, setPage] = useState<number>(0);
 
-  const { data: episodeData } = useQueryGetEpisodes({
+  const { data: episodeData, loading: episodeDataLoading } = useQueryGetEpisodes({
     variables: {
       page: page + 1,
     },
   });
 
-  const handlePage = (data: {selected: number}) => {
+  const handlePage = (data: { selected: number }) => {
     setPage(data.selected);
   };
 
-  return episodeData ? (
+  return !episodeDataLoading || episodeData ? (
     <>
       <Header title='Episodes' />
+      <Pagination onPageChange={handlePage}
+                  pageCount={episodeData?.episodes?.info?.pages! | 1} marginPagesDisplayed={3} currentPage={page} />
       <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
         {episodeData?.episodes?.results?.map((episode) => (
           <CardList key={`card-${episode?.id}`}
