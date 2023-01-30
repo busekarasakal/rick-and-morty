@@ -1,10 +1,12 @@
-import { CardList } from '../../components/CardList';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import spinner from '../../assets/spinner.gif';
-import { PLACE_HOLDER_IMAGE } from '../../utils/constants';
-import { useQueryGetLocations } from '../../hooks/useQueryGetLocations';
 import dayjs from 'dayjs';
+
+import { CardList } from '../../components/CardList';
+import { useQueryGetLocations } from '../../hooks/useQueryGetLocations';
+import { PLACE_HOLDER_IMAGE } from '../../utils/constants';
+import { Loader } from '../../components/Loader';
+import { Header } from '../../components/Header';
 
 export function LocationPage() {
   const [page, setPage] = useState<number>(1);
@@ -17,6 +19,7 @@ export function LocationPage() {
 
   return locationData ? (
     <>
+      <Header title='Locations' />
       <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
         {locationData?.locations?.results?.map((location) => (
           <CardList key={`card-${location?.id}`}
@@ -44,9 +47,7 @@ export function LocationPage() {
     </>
   ) : (
     (
-      <div className='relative self-center lg:w-48 lg:h-full lg:pt-0 w-24 h-24 pt-4'>
-        <img src={spinner} alt='spinner' className='absolute object-cover w-full h-full rounded-full lg:rounded-none' />
-      </div>
+      <Loader />
     )
   );
 }

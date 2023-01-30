@@ -1,5 +1,5 @@
-import { CardType } from '../../types/card.type';
 import { StatusBadge } from '../StatusBadge';
+import { CardType } from '../../types/card.type';
 import DEFAULT_IMAGE from '../../assets/default.png';
 
 export function Card({ image = DEFAULT_IMAGE, title, description, status, type }: CardType) {

@@ -1,5 +1,5 @@
-import { CardType } from '../../types/card.type';
 import { Card } from '../Card';
+import { CardType } from '../../types/card.type';
 
 export function CardList({ image, title, description, status, type }: CardType) {
   return (

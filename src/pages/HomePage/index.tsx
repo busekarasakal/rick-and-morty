@@ -1,8 +1,10 @@
-import { CardList } from '../../components/CardList';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
+
+import { CardList } from '../../components/CardList';
 import { useQueryGetCharacters } from '../../hooks/useQueryGetCharacters';
-import spinner from '../../assets/spinner.gif';
+import { Loader } from '../../components/Loader';
+import { Header } from '../../components/Header';
 
 export function HomePage() {
   const [page, setPage] = useState<number>(1);
@@ -15,6 +17,7 @@ export function HomePage() {
 
   return characterData ? (
     <>
+      <Header title='Characters' />
       <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
         {characterData?.characters?.results?.map((character) => (
           <CardList key={`card-${character?.id}`}
@@ -41,9 +44,7 @@ export function HomePage() {
     </>
   ) : (
     (
-      <div className='relative self-center lg:w-48 lg:h-full lg:pt-0 w-24 h-24 pt-4'>
-        <img src={spinner} alt='spinner' className='absolute object-cover w-full h-full rounded-full lg:rounded-none' />
-      </div>
+      <Loader />
     )
   );
 }

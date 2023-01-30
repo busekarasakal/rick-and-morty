@@ -1,9 +1,11 @@
-import { CardList } from '../../components/CardList';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import spinner from '../../assets/spinner.gif';
+
+import { CardList } from '../../components/CardList';
 import { useQueryGetEpisodes } from '../../hooks/useQueryGetEpisodes';
 import { PLACE_HOLDER_IMAGE } from '../../utils/constants';
+import { Loader } from '../../components/Loader';
+import { Header } from '../../components/Header';
 
 export function EpisodePage() {
   const [page, setPage] = useState<number>(1);
@@ -16,6 +18,7 @@ export function EpisodePage() {
 
   return episodeData ? (
     <>
+      <Header title='Episodes' />
       <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
         {episodeData?.episodes?.results?.map((episode) => (
           <CardList key={`card-${episode?.id}`}
@@ -41,9 +44,7 @@ export function EpisodePage() {
     </>
   ) : (
     (
-      <div className='relative self-center lg:w-48 lg:h-full lg:pt-0 w-24 h-24 pt-4'>
-        <img src={spinner} alt='spinner' className='absolute object-cover w-full h-full rounded-full lg:rounded-none' />
-      </div>
+      <Loader />
     )
   );
 }
