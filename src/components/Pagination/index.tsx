@@ -6,7 +6,7 @@ export function Pagination({ onPageChange, pageCount, marginPagesDisplayed = 0, 
   const isMobile = useMediaQuery('(max-width: 760px)');
 
   return (
-    <div className='flex justify-center items-end w-auto lg:w-full h-36 pt-24'>
+    <div className='flex justify-center items-end w-auto lg:w-full h-2 pt-24 pb-6'>
       <ReactPaginate
         className='flex lg:gap-20 gap-8 h-full text-center items-center lg:mb-6 cursor-point text-white'
         activeClassName='lg:text-xl font-bold text-lime-500'
@@ -15,7 +15,7 @@ export function Pagination({ onPageChange, pageCount, marginPagesDisplayed = 0, 
         onPageChange={onPageChange}
         pageRangeDisplayed={2}
         pageCount={pageCount}
-        marginPagesDisplayed={isMobile ? marginPagesDisplayed : 4}
+        marginPagesDisplayed={isMobile ? marginPagesDisplayed : 1}
         previousLabel='< '
         forcePage={currentPage}
       />

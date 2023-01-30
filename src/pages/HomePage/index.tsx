@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GoLocation } from 'react-icons/all';
 
 import { CardList } from '../../components/CardList';
 import { useQueryGetCharacters } from '../../hooks/useQueryGetCharacters';
@@ -11,7 +12,7 @@ export function HomePage() {
 
   const { data: characterData, loading: characterDataLoading } = useQueryGetCharacters({
     variables: {
-      page: page + 1,
+      page: page,
     },
   });
 
@@ -19,27 +20,28 @@ export function HomePage() {
     setPage(data.selected);
   };
 
-  return !characterDataLoading || characterData ? (
+  return (
     <>
       <Header title='Characters' />
       <Pagination onPageChange={handlePage}
                   pageCount={characterData?.characters?.info?.pages! | 1} currentPage={page} />
-      <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
-        {characterData?.characters?.results?.map((character) => (
-          <CardList key={`card-${character?.id}`}
-                    title={character?.name as string}
-                    image={character?.image as string}
-                    description={character?.location?.name as string}
-                    status={character?.status as string}
-                    type={character?.species as string} />
-        ))}
-      </div>
+      {!characterDataLoading || characterData ?
+        <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center '>
+          {characterData?.characters?.results?.map((character) => (
+            <CardList key={`card-${character?.id}`}
+                      title={character?.name as string}
+                      image={character?.image as string}
+                      icon={<GoLocation />}
+                      description={character?.location?.name as string}
+                      status={character?.status as string}
+                      type={character?.species as string}
+            />
+          ))}
+        </div>
+        : <Loader />
+      }
       <Pagination onPageChange={handlePage}
                   pageCount={characterData?.characters?.info?.pages! | 1} currentPage={page} />
     </>
-  ) : (
-    (
-      <Loader />
-    )
   );
 }

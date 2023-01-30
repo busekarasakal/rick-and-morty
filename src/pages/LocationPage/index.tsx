@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
+import { MdDateRange } from 'react-icons/all';
 
 import { CardList } from '../../components/CardList';
 import { useQueryGetLocations } from '../../hooks/useQueryGetLocations';
@@ -13,7 +14,7 @@ export function LocationPage() {
 
   const { data: locationData, loading: locationDataLoading } = useQueryGetLocations({
     variables: {
-      page: page + 1,
+      page: page,
     },
   });
 
@@ -21,28 +22,27 @@ export function LocationPage() {
     setPage(data.selected);
   };
 
-  return !locationDataLoading || locationData ? (
+  return (
     <>
       <Header title='Locations' />
       <Pagination onPageChange={handlePage}
                   pageCount={locationData?.locations?.info?.pages! | 1} currentPage={page} />
-      <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
-        {locationData?.locations?.results?.map((location) => (
-          <CardList key={`card-${location?.id}`}
-                    title={location?.name as string}
-                    image={PLACE_HOLDER_IMAGE}
-                    description={dayjs(location?.created).format('MMMM DD,YYYY')}
-                    status={location?.type as string}
-                    type={location?.dimension as string}
-          />
-        ))}
-      </div>
+      {!locationDataLoading || locationData ?
+        <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center'>
+          {locationData?.locations?.results?.map((location) => (
+            <CardList key={`card-${location?.id}`}
+                      title={location?.name as string}
+                      image={PLACE_HOLDER_IMAGE}
+                      description={dayjs(location?.created).format('MMMM DD,YYYY')}
+                      status={location?.type as string}
+                      type={location?.dimension as string}
+                      icon={<MdDateRange />}
+            />
+          ))}
+        </div> : <Loader />
+      }
       <Pagination onPageChange={handlePage}
                   pageCount={locationData?.locations?.info?.pages! | 1} currentPage={page} />
     </>
-  ) : (
-    (
-      <Loader />
-    )
   );
 }

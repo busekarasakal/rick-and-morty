@@ -1,9 +1,8 @@
-import spinner from '../../assets/spinner.gif';
-
 export function Loader() {
   return (
-    <div className='flex justify-center items-center align-middle lg:w-screen lg:h-screen lg:pt-0 w-24 h-24 pt-4'>
-      <img src={spinner} alt='spinner' className='lg:w-36 lg:h-36 w-24 h-24 rounded-full lg:rounded-none' />
+    <div
+      className='flex items-center justify-center animate-spin my-auto mx-auto rounded-full w-14 h-14 bg-gradient-to-tr from-white to-base'>
+      <div className='h-9 w-9 rounded-full bg-white'></div>
     </div>
   );
 }

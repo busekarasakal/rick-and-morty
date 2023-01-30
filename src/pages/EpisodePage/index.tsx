@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { RiMovieLine } from 'react-icons/all';
 
 import { CardList } from '../../components/CardList';
 import { useQueryGetEpisodes } from '../../hooks/useQueryGetEpisodes';
@@ -12,7 +13,7 @@ export function EpisodePage() {
 
   const { data: episodeData, loading: episodeDataLoading } = useQueryGetEpisodes({
     variables: {
-      page: page + 1,
+      page: page,
     },
   });
 
@@ -20,26 +21,26 @@ export function EpisodePage() {
     setPage(data.selected);
   };
 
-  return !episodeDataLoading || episodeData ? (
+  return (
     <>
       <Header title='Episodes' />
       <Pagination onPageChange={handlePage}
                   pageCount={episodeData?.episodes?.info?.pages! | 1} marginPagesDisplayed={3} currentPage={page} />
-      <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center lg:p-16 '>
-        {episodeData?.episodes?.results?.map((episode) => (
-          <CardList key={`card-${episode?.id}`}
-                    title={episode?.name as string}
-                    image={PLACE_HOLDER_IMAGE}
-                    description={episode?.episode as string}
-                    status={episode?.air_date as string} />
-        ))}
-      </div>
+      {!episodeDataLoading || episodeData ?
+        <div className='flex flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:content-center'>
+          {episodeData?.episodes?.results?.map((episode) => (
+            <CardList key={`card-${episode?.id}`}
+                      title={episode?.name as string}
+                      image={PLACE_HOLDER_IMAGE}
+                      description={episode?.episode as string}
+                      status={episode?.air_date as string}
+                      icon={<RiMovieLine />}
+            />
+          ))}
+        </div> : <Loader />
+      }
       <Pagination onPageChange={handlePage}
                   pageCount={episodeData?.episodes?.info?.pages! | 1} marginPagesDisplayed={3} currentPage={page} />
     </>
-  ) : (
-    (
-      <Loader />
-    )
   );
 }
