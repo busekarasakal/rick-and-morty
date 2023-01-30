@@ -1,4 +1,6 @@
+import { Maybe, Scalars } from '../graphql/generated/types';
+
 export interface StatusType {
-  status: string;
-  type?: string;
+  status: Maybe<Scalars['String']> | undefined;
+  type?: Maybe<Scalars['String']> | undefined;
 }

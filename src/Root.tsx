@@ -15,6 +15,7 @@ function Root() {
   }, []);
 
   if (!apolloClient) return null;
+
   return (
     <ApolloProvider client={apolloClient}>
       <Layout>

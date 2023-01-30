@@ -27,9 +27,9 @@ export function Layout({ children }: LayoutType) {
         </div>
         <ul
           className='flex flex-col lg:flex-row lg:justify-end lg:items-center lg:w-full fixed top-0 z-50 py-32 lg:py-9 lg:px-4 gap-6'>
-          <NavbarItem text='Characters' path='/' isSelected={path === '/'} />
-          <NavbarItem text='Locations' path='/location' isSelected={path === '/location'} />
-          <NavbarItem text='Episodes' path='/episode' isSelected={path === '/episode'} />
+          <NavbarItem text='Home' path='/' isSelected={path === '/'} />
+          <NavbarItem text='About' path='/#' isSelected={path === '/location'} />
+          <NavbarItem text='Contact' path='/#' isSelected={path === '/episode'} />
         </ul>
       </div>
       <div className='min-h-screen lg:min-w-screen w-full lg:h-full items-center lg:pt-32'>

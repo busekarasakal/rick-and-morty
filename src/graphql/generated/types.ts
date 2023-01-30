@@ -205,19 +205,3 @@ export type GetCharactersQueryVariables = Exact<{
 
 
 export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, pages?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, image?: string | null, species?: string | null, type?: string | null, location?: { __typename?: 'Location', name?: string | null } | null } | null> | null } | null };
-
-export type GetEpisodesQueryVariables = Exact<{
-  page?: InputMaybe<Scalars['Int']>;
-  filter?: InputMaybe<FilterEpisode>;
-}>;
-
-
-export type GetEpisodesQuery = { __typename?: 'Query', episodes?: { __typename?: 'Episodes', info?: { __typename?: 'Info', count?: number | null, pages?: number | null } | null, results?: Array<{ __typename?: 'Episode', id?: string | null, name?: string | null, episode?: string | null, air_date?: string | null, created?: string | null } | null> | null } | null };
-
-export type GetLocationsQueryVariables = Exact<{
-  page?: InputMaybe<Scalars['Int']>;
-  filter?: InputMaybe<FilterLocation>;
-}>;
-
-
-export type GetLocationsQuery = { __typename?: 'Query', locations?: { __typename?: 'Locations', info?: { __typename?: 'Info', count?: number | null, pages?: number | null } | null, results?: Array<{ __typename?: 'Location', id?: string | null, name?: string | null, type?: string | null, dimension?: string | null, created?: string | null } | null> | null } | null };

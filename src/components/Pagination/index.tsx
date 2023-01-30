@@ -1,6 +1,6 @@
 import ReactPaginate from 'react-paginate';
 import { PaginationType } from '../../types/pagination.type';
-import { useMediaQuery } from '../../hooks/udeMediaQuery';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 export function Pagination({ onPageChange, pageCount, marginPagesDisplayed = 0, currentPage }: PaginationType) {
   const isMobile = useMediaQuery('(max-width: 760px)');

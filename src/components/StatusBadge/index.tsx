@@ -1,5 +1,10 @@
-import { STATUS } from '../../types/status.enum';
 import { StatusType } from '../../types/status.type';
+
+enum STATUS {
+  'Alive' = 'Alive',
+  'Dead' = 'Dead',
+  'unknown' = 'Unknown'
+}
 
 export function StatusBadge({ status, type }: StatusType) {
   const statusColor = (status: string) => {
