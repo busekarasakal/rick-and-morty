@@ -14,7 +14,9 @@ function Root() {
     setApolloClient(createApolloClient());
   }, []);
 
-  if (!apolloClient) return null;
+  if (!apolloClient) {
+    return null;
+  }
 
   return (
     <ApolloProvider client={apolloClient}>
