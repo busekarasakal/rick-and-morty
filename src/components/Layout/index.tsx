@@ -1,12 +1,10 @@
 import { LayoutType, NavbarTypes } from '../../types/layout.type';
-import { useEffect, useState } from 'react';
 
-function NavbarItem({ isSelected, text, path, onClick }: NavbarTypes) {
+function NavbarItem({ isSelected, text, path }: NavbarTypes) {
   return (
     <li className='hover:cursor-pointer'>
       <a
         href={path}
-        onClick={onClick}
         className={`flex flex-col lg:flex-row items-start p-0.5 ${
           isSelected ? 'text-base' : 'text-gray-500'
         } hover:text-base hover:text-gray-700 hover:font-bold`}
@@ -18,6 +16,7 @@ function NavbarItem({ isSelected, text, path, onClick }: NavbarTypes) {
 }
 
 export function Layout({ children }: LayoutType) {
+  const path = window.location.pathname;
   return (
     <div className='flex flex-row lg:flex-col bg-zinc-800'>
       <div
@@ -27,9 +26,9 @@ export function Layout({ children }: LayoutType) {
         </div>
         <ul
           className='flex flex-col lg:flex-row lg:justify-end lg:items-center lg:w-full fixed top-0 z-50 py-32 lg:py-9 lg:px-4 gap-6'>
-          <NavbarItem text='Characters' path='/' />
-          <NavbarItem text='Locations' path='/location' />
-          <NavbarItem text='Episodes' path='/episode' />
+          <NavbarItem text='Characters' path='/' isSelected={path === '/'} />
+          <NavbarItem text='Locations' path='/location' isSelected={path === '/location'} />
+          <NavbarItem text='Episodes' path='/episode' isSelected={path === '/episode'} />
         </ul>
       </div>
       <div className='min-h-screen lg:min-w-screen w-full lg:h-full items-center lg:pt-32'>
