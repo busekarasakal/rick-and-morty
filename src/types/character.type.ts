@@ -1,6 +1,6 @@
 type LocationType = {
-  name: string;
-}
+  name?: string | null;
+};
 
 export interface CharacterType {
   id: number;

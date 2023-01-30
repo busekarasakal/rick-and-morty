@@ -1,4 +1,4 @@
 export interface StatusType {
-  status: string;
-  type: string;
+  status: string | undefined;
+  type: string | undefined;
 }
