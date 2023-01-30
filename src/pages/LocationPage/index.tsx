@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import dayjs from 'dayjs';
 
 import { CardList } from '../../components/CardList';
@@ -7,15 +6,20 @@ import { useQueryGetLocations } from '../../hooks/useQueryGetLocations';
 import { PLACE_HOLDER_IMAGE } from '../../utils/constants';
 import { Loader } from '../../components/Loader';
 import { Header } from '../../components/Header';
+import { Pagination } from '../../components/Pagination';
 
 export function LocationPage() {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
 
   const { data: locationData } = useQueryGetLocations({
     variables: {
-      page,
+      page: page + 1,
     },
   });
+
+  const handlePage = (data: { selected: number }) => {
+    setPage(data.selected);
+  };
 
   return locationData ? (
     <>
@@ -31,19 +35,8 @@ export function LocationPage() {
           />
         ))}
       </div>
-      <div className='flex justify-center items-end w-auto lg:w-full h-36 pt-24'>
-        <ReactPaginate
-          className='flex lg:gap-20 gap-8 h-full text-center items-center lg:mb-6 cursor-point text-white'
-          activeClassName='lg:text-xl font-bold text-lime-500'
-          breakLabel='...'
-          nextLabel=' >'
-          onPageChange={() => setPage((prevState) => prevState + 1)}
-          pageRangeDisplayed={3}
-          pageCount={locationData?.locations?.info?.pages! | 1}
-          marginPagesDisplayed={0}
-          previousLabel='< '
-        />
-      </div>
+      <Pagination onPageChange={handlePage}
+                  pageCount={locationData?.locations?.info?.pages! | 1} currentPage={page} />
     </>
   ) : (
     (
